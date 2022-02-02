@@ -1,0 +1,56 @@
+.login-modal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 40%;
+    min-width: 200px;
+    background-color: lightgrey;
+    margin: 4rem auto;
+    outline: none;
+    border: solid black 1px;
+    border-radius: 0.5rem;
+
+    .modal-header {
+        background-color: #aee2f1;
+        
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 40px;
+        width: 100%;
+        border-radius: 0.5rem;
+    
+        h2 {
+          text-align: center;
+          font-size: 1.8rem;
+        }
+        .close-modal-btn {
+          cursor: pointer;
+          color: red;
+          .close-x {
+            background-color: white;
+            
+          }
+        }
+        .close-modal-btn:hover {
+          cursor: pointer;
+          color: black;
+        }
+      }
+      .modal-content {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        padding: 1.5rem 1rem;
+        .alert {
+            margin-bottom: 10px;
+        }
+      }
+      .btn {
+        width: 80%;
+      }
+      
+
+  }
+
+  
