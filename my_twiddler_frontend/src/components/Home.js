@@ -1,5 +1,5 @@
 import { React, useState,useEffect,useRef  } from 'react';
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux';
 import {io}  from "socket.io-client";
 import TweetCard from './TweetCard';
 import '../css/layout.scss';
@@ -18,15 +18,15 @@ export default function Home() {
       extraHeaders: {
         "my-custom-header": "abcd"
       }
-    })
+    });
     socket.on("data", data => {
-      console.log(data)
+      console.log(data);
       if (response.length < 30){
-        setResponse(data)
+        setResponse(data);
        
       }
       else if (data[data.length -1].timestamp !== response[response.length -1].timestamp){
-        setResponse(data)
+        setResponse(data);
       }
     });
   }, []);

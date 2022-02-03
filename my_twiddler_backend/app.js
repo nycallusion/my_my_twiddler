@@ -1,13 +1,13 @@
-var express = require('express');
+const express = require('express');
 const cors = require('cors');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var tweetRouter = require('./routes/tweet');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const tweetRouter = require('./routes/tweet');
 const mongoose = require('mongoose');
-var app = express();
+const app = express();
 const http = require("http");
 const socketIo = require("socket.io");
 const Tweet = require('./models/Tweet')
@@ -29,7 +29,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 // app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, 'public')));
-
 // app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/Tweet', tweetRouter);
@@ -44,28 +43,28 @@ const io = socketIo(server, {
   }});
 
 io.on("connection", (socket) => {
-  let tweet
+  let tweet;
   console.log("New client connected");
   setInterval(async () => {
      let newTweet = await Tweet.find()
     if (tweet) {
       if(newTweet[newTweet.length -1].timestamp !== tweet[tweet.length -1].timestamp){
         if (newTweet.length > 30){
-          tweet = newTweet.slice(newTweet.length - 30).reverse()
-          return socket.emit("data", tweet)
+          tweet = newTweet.slice(newTweet.length - 30).reverse();
+          return socket.emit("data", tweet);
         }
         tweet = newTweet.reverse()
-          return socket.emit("data", tweet)
+          return socket.emit("data", tweet);
       }
       return
     }
     if(!tweet){
       if (newTweet.length > 30){
-        tweet = newTweet.slice(newTweet.length - 30).reverse()
+        tweet = newTweet.slice(newTweet.length - 30).reverse();
         return socket.emit("data", tweet)
       }
-      tweet = newTweet.reverse()
-      socket.emit("data", tweet)
+      tweet = newTweet.reverse();
+      socket.emit("data", tweet);
     }
   }
   , 1000);
@@ -74,5 +73,5 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(process.env.PORT2, () => console.log(`Listening on port ${process.env.PORT2}`))
+server.listen(process.env.PORT2, () => console.log(`Listening on port ${process.env.PORT2}`));
 module.exports = app;

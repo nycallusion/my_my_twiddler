@@ -3,7 +3,7 @@ import TextField from '@mui/material/TextField';
 import Alert from '@mui/material/Alert';
 import {useDispatch} from 'react-redux';
 import {setToken} from '../../store/reducer/userReducer';
-import LoginModal from '../modal/LoginModal'
+import LoginModal from '../modal/LoginModal';
 
 export default function NoUser(props) {
     const [userName,
@@ -17,16 +17,16 @@ export default function NoUser(props) {
     const [openLogin,
         setOpenLogin] = useState(false);
     const dispatch = useDispatch();
-    const closeLoginHandler = () => setOpenLogin(false)
-    const openLoginHandler = () => setOpenLogin(true)
+    const closeLoginHandler = () => setOpenLogin(false);
+    const openLoginHandler = () => setOpenLogin(true);
 
     const handleRegister = async() => {
         // validated on client side if field are filled
         if (!email || !password || !userName) {
-            return setErrMsg('All field must be filled')
+            return setErrMsg('All field must be filled');
         }
         if(userName.length < 5 || userName.length > 10){
-          return setErrMsg('User Name Have to be 5 to 10 character')
+          return setErrMsg('User Name Have to be 5 to 10 character');
         }
         // send data to backend
         const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users/signup`, {
@@ -35,7 +35,7 @@ export default function NoUser(props) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({email, password,userName})
-        })
+        });
 
         let jsonData = await response.json();
         //place error in  message
@@ -84,4 +84,4 @@ export default function NoUser(props) {
         </div>
 
     );
-}
+};

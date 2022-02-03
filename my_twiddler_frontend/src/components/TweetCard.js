@@ -10,7 +10,7 @@ import '../css/layout.scss';
 
 export default function TweetCard({item}) {
 
-  console.log(item)
+  console.log(item);
   const {userName,message} = item
   return (
       <div className='tweet-card'>

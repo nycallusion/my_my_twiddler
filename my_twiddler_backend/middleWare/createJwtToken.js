@@ -9,5 +9,4 @@ module.exports = {
         let jwtToken = await jwt.sign(payload, process.env.SECRET_KEY, {expiresIn: 360000});
         return jwtToken;
     }
-
-}
+};

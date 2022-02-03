@@ -26,7 +26,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 //         'Content-Type': 'application/json',
 //         Authorization: `Bearer ${token}`,
 //       },
-//       body: JSON.stringify({ carId }),
+//       body: JSON.stringify({ }),
 //     });
 //     let jsonData = await response.json();
 //     return jsonData;

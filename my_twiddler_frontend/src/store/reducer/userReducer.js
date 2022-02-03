@@ -13,9 +13,6 @@ export const userSlice = createSlice({
       state.token = payload.token;
       state.user_id = payload.user_id;
     },
-    // setUser_id: (state, { payload }) => {
-    //   state.user_Id = payload.token;
-    // },
     logout: (state, { payload }) => {
       state.token = null;
       state.user_id = null;

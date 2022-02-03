@@ -28,5 +28,5 @@ import NotFound from './NotFound';
                         </Route>
                     </Routes>
                 </Router>
-        )
+        );
     };

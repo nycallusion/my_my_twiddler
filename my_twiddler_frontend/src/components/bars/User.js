@@ -5,7 +5,6 @@ import { logout } from '../../store/reducer/userReducer';
 
 export default function User(props) {
   const dispatch = useDispatch();
-
     return (
         <div>
             <button 
@@ -16,4 +15,4 @@ export default function User(props) {
             >Logout </button>
     </div>
     );
-  }
+  };

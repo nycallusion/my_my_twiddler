@@ -1,5 +1,5 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const User = require('../models/Users');
 const Tweet = require('../models/Tweet');
 const {authenticateToken} = require('../middleWare/authToken');
@@ -26,7 +26,7 @@ router.post('/create',authenticateToken, async (req, res, next) => {
       });
   
     } catch (err) {
-      throw (err)
+      throw (err);
     }
   });
 
@@ -39,9 +39,9 @@ router.get('/gettweets' , async (req,res,next) => {
     });
 
   } catch (err) {
-    throw (err)
+    throw (err);
   }
 
-})
+});
 
 module.exports = router;

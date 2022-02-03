@@ -1,11 +1,11 @@
-const Users = require('../models/Users')
+const Users = require('../models/Users');
 
 module.exports = {
     /////check if all fiend are filled
     validateRegister: async(req, res, next) => {
-        const {email, password, userName} = req.body
-        let user = await Users.findOne({email})
-        let userNameExist = await Users.findOne({userName})
+        const {email, password, userName} = req.body;
+        let user = await Users.findOne({email});
+        let userNameExist = await Users.findOne({userName});
         if (user) {
             return res
                 .status(409)
@@ -35,4 +35,4 @@ module.exports = {
 
         next();
     }
-}
+};

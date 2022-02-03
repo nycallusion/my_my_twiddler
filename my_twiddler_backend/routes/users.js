@@ -1,10 +1,10 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const jwt = require('jsonwebtoken');
 const User = require('../models/Users');
 const { comparePassword, createUser } = require('../middleWare/auth');
 const { validateRegister } = require('../middleWare/userRequestValidation');
-const{ createJwtToken } = require('../middleWare/createJwtToken')
+const{ createJwtToken } = require('../middleWare/createJwtToken');
 require('dotenv').config();
 
 
@@ -69,7 +69,7 @@ router.post('/login',async (req, res) => {
       message: error.message,
     });
   }
-})
+});
 
 
 

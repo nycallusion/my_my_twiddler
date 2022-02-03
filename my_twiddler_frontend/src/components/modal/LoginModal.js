@@ -4,7 +4,7 @@ import Modal from 'react-modal'
 import TextField from '@mui/material/TextField';
 import Alert from '@mui/material/Alert';
 import {setToken} from '../../store/reducer/userReducer';
-import '../../css/modal.scss'
+import '../../css/modal.scss';
 
 export default function LoginModal({openLogin, closeLoginHandler}) {
     const [email,
@@ -18,7 +18,7 @@ export default function LoginModal({openLogin, closeLoginHandler}) {
     const handleLogin = async() => {
         // validated on client side if field are filled
         if (!email || !password) {
-            return setErrMsg('All field must be filled')
+            return setErrMsg('All field must be filled');
         }
         // send data to backend
         const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users/login`, {
@@ -68,6 +68,5 @@ export default function LoginModal({openLogin, closeLoginHandler}) {
                 <h2>Login</h2>
             </button>
         </Modal>
-    )
-
-}
+    );
+};

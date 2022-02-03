@@ -8,5 +8,5 @@ export default function NotFound () {
                 404 NOT FOUND
             </h1>
         </div>
-    )
+    );
 };

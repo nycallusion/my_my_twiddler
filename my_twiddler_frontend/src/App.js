@@ -17,6 +17,6 @@ function App() {
       </PersistGate>
     </Provider>
   );
-}
+}l
 
 export default App;

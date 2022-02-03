@@ -11,9 +11,9 @@ export default function LeftBar(props) {
   let panel;
 
   if(token) {
-    panel = <User/> ;
+    panel = <User/> 
   }else {
-    panel = <NoUser />;
+    panel = <NoUser />
   }
   
   
