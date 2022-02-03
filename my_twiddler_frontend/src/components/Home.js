@@ -33,7 +33,7 @@ export default function Home() {
   return (
     <div className='feed'>
         {response.map((item, i) => (
-          <TweetCard  key={item._id} item={item}/>
+          <TweetCard  key={item._id} item={item} data={response}/>
         ))}
     </div>
   );

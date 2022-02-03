@@ -60,7 +60,7 @@ export default function User(props) {
                 <textarea className="tweet-text-box" type="text" name="tweet" value={tweet} onChange={e => setTweet(e.target.value)} placeholder='Keep Tweets to under 150 characters'/>
               </label>
             </form>
-            <button className='submit-btn' onClick={handleTweetSubmit}>submit</button>
+            <button className='submit-btn' onClick={handleTweetSubmit}>Send tweet</button>
           </div>
       </div>
     );

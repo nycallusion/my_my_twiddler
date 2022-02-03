@@ -36,7 +36,6 @@ export default function LoginModal({openLogin, closeLoginHandler}) {
             } else {
                 // set token and auto login
                 dispatch(setToken({token: data.token, user_id: data.user}));
-                
             }
         })
     }
