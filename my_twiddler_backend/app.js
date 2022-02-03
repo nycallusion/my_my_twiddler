@@ -47,18 +47,22 @@ io.on("connection", (socket) => {
   console.log("New client connected");
   setInterval(async () => {
      let newTweet = await Tweet.find()
+     const reverseNewTweet = [...newTweet].reverse()
     if (tweet) {
-      if(newTweet[newTweet.length -1].timestamp !== tweet[tweet.length -1].timestamp){
+      /// emits data if theres new data
+      if( newTweet.length > 0 && reverseNewTweet[0].timestamp !== tweet[0].timestamp){
         if (newTweet.length > 30){
           tweet = newTweet.slice(newTweet.length - 30).reverse();
           return socket.emit("data", tweet);
         }
-        tweet = newTweet.reverse()
-          return socket.emit("data", tweet);
+      tweet = newTweet.reverse();
+      return socket.emit("data", tweet);
       }
-      return
     }
     if(!tweet){
+      if (newTweet.length < 1) {
+        return socket.emit("data", tweet);
+      }
       if (newTweet.length > 30){
         tweet = newTweet.slice(newTweet.length - 30).reverse();
         return socket.emit("data", tweet)
@@ -66,8 +70,9 @@ io.on("connection", (socket) => {
       tweet = newTweet.reverse();
       socket.emit("data", tweet);
     }
+    // console.log('do nothing')
   }
-  , 1000);
+  , 2000);
   socket.on("disconnect", () => {
     console.log("Client disconnected");
   });
