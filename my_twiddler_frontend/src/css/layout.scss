@@ -1,6 +1,6 @@
 .App {
     position: absolute;
-    height: 100%;
+    height: 94vh;
     width: 100%;
     background-color: #f2f6f6;
   }
@@ -52,21 +52,36 @@
 
         
       }
-
-      // .right-bar {
-      //   display: flex;
-      //   flex-direction: column;
-      //   background-color: #a14482;
-      //   width: 20%;
-      //   height: 100%;
-      // }
   
       .page-content {
         display: flex;
         width: 100%;
         background-color: lightgrey;
         justify-content: center;
-        
       }
+    }
+  }
+
+  .feed {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    width: 80%;
+    min-width: 250px;
+    overflow-y:auto;
+    padding: 10px 0;
+  }
+  .feed::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .tweet-card {
+    display: flex;
+    height: 100px;
+    width: 80%;
+    background-color: white;
+    .tweet-img {
+      height: 100%;
+      width: 100%;
     }
   }
