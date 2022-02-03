@@ -1,28 +1,37 @@
 import React from 'react';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import '../css/layout.scss';
+import TimeAgo from 'javascript-time-ago'
+import en from 'javascript-time-ago/locale/en.json'
+import ReactTimeAgo from 'react-time-ago'
+TimeAgo.addDefaultLocale(en)
 
 
 
 export default function TweetCard({item}) {
+  const {userName,message,timestamp} = item
 
-  console.log(item);
-  const {userName,message} = item
   return (
       <div className='tweet-card'>
-          <div >
+          <div className='tweet-img-card'>
             <img className='tweet-img'src = 'https://assets.webiconspng.com/uploads/2017/01/Black-User-Graphic-Icon.png'/>
           </div>
           <div className='tweet-info'>
             <div className='tweet-user'>
-                {userName}
+              <div className='tweet-user-name'>
+                {`@${userName}`}
+              </div>
+              <br/>
+              <div className='tweet-time-ago'>
+                Tweeted:{' '}
+                <ReactTimeAgo date={timestamp*1} locale="en-US" timeStyle="twitter" />
+                {' '}ago
+              </div>
             </div>
             <div className='tweet-message'>
-                {message}
+              <h5>
+              {message}
+              </h5>
+                
             </div>
           </div>
       </div>

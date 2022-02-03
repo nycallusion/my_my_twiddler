@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Header from './header/Header';
 import LeftBar from './bars/LeftBar';
-import RightBar from './bars/RightBar';
 import '../css/layout.scss';
 
 
@@ -9,8 +8,8 @@ export default function Layout(props) {
 
   
   return (
-    <div className="Main">
-
+    <div className='page'>
+          <div className="Main">
       <Header />
       <div className="page-item">
         <LeftBar/>
@@ -20,5 +19,7 @@ export default function Layout(props) {
       </div>
 
     </div>
+    </div>
+
   );
 };

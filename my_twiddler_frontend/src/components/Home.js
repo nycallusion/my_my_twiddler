@@ -10,7 +10,6 @@ const ENDPOINT = "http://localhost:4001/";
 
 export default function Home() {
   const [response, setResponse] = useState([]);
-  // const messagesEndRef = useRef(null)
 
   useEffect(() => {
     const socket = io(ENDPOINT, {
@@ -20,7 +19,6 @@ export default function Home() {
       }
     });
     socket.on("data", data => {
-      console.log(data);
       if (response.length < 30){
         setResponse(data);
        

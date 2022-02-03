@@ -2,6 +2,7 @@ import React from 'react';
 import {useSelector } from 'react-redux';
 import NoUser from './NoUser';
 import User from './User';
+import '../../css/layout.scss';
 
 
 export default function LeftBar(props) {
@@ -13,7 +14,7 @@ export default function LeftBar(props) {
   if(token) {
     panel = <User/> 
   }else {
-    panel = <NoUser />
+    panel = <NoUser/>
   }
   
   
