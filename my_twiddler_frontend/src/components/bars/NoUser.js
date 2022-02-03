@@ -43,7 +43,7 @@ export default function NoUser(props) {
             setErrMsg(jsonData.message);
         } else {
             // set token and auto login
-            dispatch(setToken({token: jsonData.token, user_id: jsonData.user}));
+            dispatch(setToken({token: jsonData.token, user_id: jsonData.user, profilePic: jsonData.profilePic}));
         }
     }
 

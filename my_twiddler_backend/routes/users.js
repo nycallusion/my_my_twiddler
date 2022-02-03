@@ -2,9 +2,12 @@ const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 const User = require('../models/Users');
+const AWS = require('aws-sdk');
+const { v4: uuidv4 } = require('uuid');
 const { comparePassword, createUser } = require('../middleWare/auth');
 const { validateRegister } = require('../middleWare/userRequestValidation');
 const{ createJwtToken } = require('../middleWare/createJwtToken');
+const {authenticateToken} = require('../middleWare/authToken');
 require('dotenv').config();
 
 
@@ -30,7 +33,8 @@ router.post('/signup', validateRegister , async (req, res, next) => {
       message: 'Successfully signed up',
       token: jwtToken,
       user: savedUser._id,
-      userName: savedUser.userName
+      userName: savedUser.userName,
+      profilePic: savedUser.profilePic
     });
 
   } catch (err) {
@@ -61,13 +65,51 @@ router.post('/login',async (req, res) => {
       status: 'success',
       message: 'Successfully logged in',
       token: jwtToken,
-      user: user._id
+      user: user._id,
+      profilePic:user.profilePic
     });
   } catch (error) {
     return res.status(500).json({
       status: 'error',
       message: error.message,
     });
+  }
+});
+
+
+
+
+router.post('/update',authenticateToken, async (req,res,next) => {
+  try {
+    const user = await User.findOne({ _id: req.user.id });
+
+    if (req.files) {
+      let image = req.files.image;
+      let s3 = new AWS.S3({
+        AWS_Access_Key_ID: process.env.AWS_ACCESS_KEY_ID,
+        AWS_Secret_Access_Key: process.env.AWS_SECRET_ACCESS_KEY,
+      });
+      let bucketName = 'mytwiddler';
+      let keyName = `users/${user._id}/${uuidv4()}_${image.name}`;
+      var objectParams = {
+        Bucket: bucketName,
+        Key: keyName,
+        Body: image.data,
+        ACL: 'public-read',
+      };
+      var uploadPromise = await s3.putObject(objectParams).promise();
+      let url = `https://${bucketName}.s3.amazonaws.com/${keyName}`;
+      user.profilePic = url;
+    }
+    await user.save()
+    return res.status(200).json({
+      status: 'success',
+      message: 'Profile Pic been updated',
+      user
+    });
+
+  }catch (err) {
+    throw(err);
   }
 });
 

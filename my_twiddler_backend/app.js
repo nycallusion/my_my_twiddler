@@ -7,10 +7,12 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const tweetRouter = require('./routes/tweet');
 const mongoose = require('mongoose');
+const fileUpload = require('express-fileupload')
 const app = express();
 const http = require("http");
 const socketIo = require("socket.io");
 const Tweet = require('./models/Tweet')
+
 require('dotenv').config();
 
 
@@ -23,6 +25,7 @@ mongoose
     console.log('server err');
   });
 
+app.use(fileUpload())
 app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());

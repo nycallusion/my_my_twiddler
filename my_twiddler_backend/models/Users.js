@@ -20,6 +20,9 @@ const UserSchema = new mongoose.Schema({
         unique: true,
         required: true
     },
+    profilePic:{
+        type: String, default:'https://mytwiddler.s3.amazonaws.com/users/placeHolder.png'
+      },
     timestamp: {
         type: String,
         default: () => Date.now()

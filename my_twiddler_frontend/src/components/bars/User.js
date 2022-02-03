@@ -12,6 +12,7 @@ export default function User(props) {
   const [successMsg,
       setSuccessMsg] = useState('');
   const token = useSelector(state => state.user.token);
+  const user = useSelector(state => state.user);
   const dispatch = useDispatch();
 
   const handleTweetSubmit = async() => {
@@ -49,6 +50,9 @@ export default function User(props) {
                 dispatch(logout())
             }}
           >Logout </button>
+        </div>
+        <div className='profile-pic'>
+          <img src={user.profilePic}/>
         </div>
 
           <div className='tweet-box'>
