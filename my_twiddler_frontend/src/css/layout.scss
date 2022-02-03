@@ -108,6 +108,7 @@
     justify-content: center;
     background-color: white;
     border: grey solid;
+    margin: 2px;
     border-width: 0.1ex 0.1ex 0.1ex 0.1ex;
     
     .tweet-img-card {
@@ -143,6 +144,12 @@
         background-color: #deebeb;
       }
     }
+  }
+
+  .tweet-card:hover {
+    box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.2); 
+    
+    cursor: pointer;
   }
 
   .tweet-modal-card {
