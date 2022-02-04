@@ -57,7 +57,6 @@ export default function UploadModal({modal, modalHandler}) {
             if (jsonData.status === 'error') {
                 return setErrMsg(jsonData.message)
             };
-            console.log(jsonData)
             dispatch(updateUser({profilePic:jsonData.profilePic}))
             setSelectedImage()
             modalHandler()

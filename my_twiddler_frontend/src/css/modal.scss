@@ -52,23 +52,28 @@
   }
 
 .tweet-modal{
-  background-color: red;
+  width: 100%;
+  height: 100%;
 }
 .tweet-modal-header {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 50px;
+  max-height: 10%;
   width: 100%;
   border: solid grey 0.1em;
   font-weight: bold;
   font-size:2em;
   background-color: lightgrey;
+  img {
+    max-width: 100px;
+    height: 100%;
+  }
 }
 .tweet-modal-content {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  max-width: 100%;
   padding: 1.5rem 1rem;
   
 }
