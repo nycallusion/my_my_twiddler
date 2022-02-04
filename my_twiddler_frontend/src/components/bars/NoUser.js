@@ -25,8 +25,8 @@ export default function NoUser(props) {
         if (!email || !password || !userName) {
             return setErrMsg('All field must be filled');
         }
-        if(userName.length < 5 || userName.length > 10){
-          return setErrMsg('User Name Have to be 5 to 10 character');
+        if(userName.length < 5 || userName.length > 15){
+          return setErrMsg('User Name Have to be 5 to 15 character');
         }
         // send data to backend
         const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users/signup`, {

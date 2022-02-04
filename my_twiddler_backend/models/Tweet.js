@@ -15,6 +15,9 @@ const TweetSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    profilePic:{
+        type: String, default:'https://mytwiddler.s3.amazonaws.com/users/placeHolder.png'
+      },
     timestamp: {
         type: String,
         default: () => Date.now()

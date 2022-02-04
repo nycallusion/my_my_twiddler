@@ -10,6 +10,7 @@
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "dotenv": "^15.0.0",
+    "frontend-image-compress": "^3.0.2",
     "javascript-time-ago": "^2.3.11",
     "node-sass": "^7.0.1",
     "react": "^17.0.2",

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 const User = require('../models/Users');
+const Tweet = require('../models/Tweet')
 const AWS = require('aws-sdk');
 const { v4: uuidv4 } = require('uuid');
 const { comparePassword, createUser } = require('../middleWare/auth');
@@ -82,7 +83,9 @@ router.post('/login',async (req, res) => {
 router.post('/update',authenticateToken, async (req,res,next) => {
   try {
     const user = await User.findOne({ _id: req.user.id });
+ 
 
+  
     if (req.files) {
       let image = req.files.image;
       let s3 = new AWS.S3({
@@ -90,7 +93,7 @@ router.post('/update',authenticateToken, async (req,res,next) => {
         AWS_Secret_Access_Key: process.env.AWS_SECRET_ACCESS_KEY,
       });
       let bucketName = 'mytwiddler';
-      let keyName = `users/${user._id}/${uuidv4()}_${image.name}`;
+      let keyName = `users/${user.email}/${uuidv4()}_${req.body.name}`;
       var objectParams = {
         Bucket: bucketName,
         Key: keyName,
@@ -102,10 +105,15 @@ router.post('/update',authenticateToken, async (req,res,next) => {
       user.profilePic = url;
     }
     await user.save()
+    let profilePic = user.profilePic
+    let tweets = await Tweet.updateMany(
+      { owner:req.user.id },
+      { profilePic }
+    );
     return res.status(200).json({
       status: 'success',
       message: 'Profile Pic been updated',
-      user
+      profilePic:user.profilePic
     });
 
   }catch (err) {

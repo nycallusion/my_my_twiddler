@@ -1,7 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-const path = require('path');
-const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -30,9 +28,6 @@ app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-// app.use(cookieParser());
-// app.use(express.static(path.join(__dirname, 'public')));
-// app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/Tweet', tweetRouter);
 
@@ -46,28 +41,34 @@ const io = socketIo(server, {
   }});
 
 io.on("connection", (socket) => {
-  let tweet;
+  let tweet = []
   console.log("New client connected");
   setInterval(async () => {
      let newTweet = await Tweet.find()
-     const reverseNewTweet = [...newTweet].reverse()
-    if (tweet) {
-      /// emits data if theres new data
-      if( newTweet.length > 0 && reverseNewTweet[0].timestamp !== tweet[0].timestamp){
-        if (newTweet.length > 30){
-          tweet = newTweet.slice(newTweet.length - 30).reverse();
+     let reverseNewTweet = [...newTweet].reverse()
+     if (tweet.length > 0) {
+      // emits data if theres new data
+      if(reverseNewTweet.length <= 30){
+        if(JSON.stringify(reverseNewTweet) !== JSON.stringify(tweet)) {
+          tweet = reverseNewTweet;
           return socket.emit("data", tweet);
         }
-      tweet = newTweet.reverse();
-      return socket.emit("data", tweet);
       }
+      if(reverseNewTweet.length > 30){
+        reverseNewTweet = reverseNewTweet.slice(0,30);
+        if(JSON.stringify(reverseNewTweet) !== JSON.stringify(tweet)) {
+          tweet = reverseNewTweet;
+          return socket.emit("data", tweet);
+        }
+      }
+
     }
-    if(!tweet){
+    if(tweet.length < 1){
       if (newTweet.length < 1) {
-        return socket.emit("data", tweet);
+        return
       }
       if (newTweet.length > 30){
-        tweet = newTweet.slice(newTweet.length - 30).reverse();
+        tweet = reverseNewTweet.slice(0,30);
         return socket.emit("data", tweet)
       }
       tweet = newTweet.reverse();
