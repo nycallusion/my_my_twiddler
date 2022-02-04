@@ -29,7 +29,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use('/api/users', usersRouter);
-app.use('/api/Tweet', tweetRouter);
+app.use('/api/tweet', tweetRouter);
 
 const server = http.createServer(app);
 const io = socketIo(server, {
@@ -82,5 +82,5 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(process.env.PORT2, () => console.log(`Listening on port ${process.env.PORT2}`));
+server.listen(process.env.PORT, () => console.log(`Listening on port ${process.env.PORT}`));
 module.exports = app;
