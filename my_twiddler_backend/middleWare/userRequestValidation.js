@@ -3,6 +3,7 @@ const Users = require('../models/Users');
 module.exports = {
     /////check if all fiend are filled
     validateRegister: async(req, res, next) => {
+        console.log('hit')
         const {email, password, userName} = req.body;
         let user = await Users.findOne({email});
         let userNameExist = await Users.findOne({userName});
@@ -32,7 +33,7 @@ module.exports = {
                 .status(400)
                 .json({status: 'error', message: 'Password must be 6 character or longer'});
         }
-
+        console.log('hit')
         next();
     }
 };

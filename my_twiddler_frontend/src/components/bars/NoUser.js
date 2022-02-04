@@ -22,29 +22,33 @@ export default function NoUser(props) {
 
     const handleRegister = async() => {
         // validated on client side if field are filled
-        if (!email || !password || !userName) {
-            return setErrMsg('All field must be filled');
+        try {
+            if (!email || !password || !userName) {
+                return setErrMsg('All field must be filled');
+            }
+            if(userName.length < 5 || userName.length > 15){
+              return setErrMsg('User Name Have to be 5 to 15 character');
+            }
+            // send data to backend
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users/signup`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({email, password,userName})
+            });
+    
+               let jsonData = await response.json()
+            if (jsonData.status === 'error') {
+                return setErrMsg(jsonData.message);
+            } else {
+                // set token and auto login
+                dispatch(setToken({token: jsonData.token, user_id: jsonData.user, profilePic: jsonData.profilePic}));
+            }
+        } catch (err) {
+            throw(err)
         }
-        if(userName.length < 5 || userName.length > 15){
-          return setErrMsg('User Name Have to be 5 to 15 character');
-        }
-        // send data to backend
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users/signup`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({email, password,userName})
-        });
-
-        let jsonData = await response.json();
-        //place error in  message
-        if (jsonData.status === 'error') {
-            setErrMsg(jsonData.message);
-        } else {
-            // set token and auto login
-            dispatch(setToken({token: jsonData.token, user_id: jsonData.user, profilePic: jsonData.profilePic}));
-        }
+        
     }
 
     return (
