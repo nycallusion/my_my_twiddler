@@ -13,7 +13,7 @@ export default function Home() {
     const socket = io(ENDPOINT, {
       withCredentials: true,
       extraHeaders: {
-        "my-custom-header": "abcd"
+        "my-custom-header": "my-custom-header"
       }
     });
     socket.on("data", data => {
