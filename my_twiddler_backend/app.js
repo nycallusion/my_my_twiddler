@@ -33,16 +33,11 @@ app.use('/api/tweet', tweetRouter);
 const server = http.createServer(app);
 const io = socketIo(server, {
     cors: {
-        // origin: "http://localhost:3000",
-        origin: "https://www.davidcodedesign.com:3000",
-        methods: [
-            "GET", "POST"
+        origin: [
+          "https://www.davidcodedesign.com:3000",
+          "https://davidcodedesign.com:3000",
+          "http://localhost:3000",
         ],
-        allowedHeaders: ["my-custom-header"],
-        credentials: true
-    },
-    cors: {
-        origin: "https://davidcodedesign.com:3000",
         methods: [
             "GET", "POST"
         ],
