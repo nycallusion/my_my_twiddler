@@ -9,7 +9,6 @@ const ENDPOINT = `${window.location.hostname}/`
 
 export default function Home() {
   const [response, setResponse] = useState([]);
-  console.log(window.location.hostname)
   useEffect(() => {
     const socket = io(ENDPOINT, {
       withCredentials: true,
