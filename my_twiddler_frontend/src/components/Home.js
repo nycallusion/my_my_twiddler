@@ -4,7 +4,7 @@ import TweetCard from './TweetCard';
 import '../css/layout.scss';
 
 // end point for socket io
-const ENDPOINT = `${window.location.hostname}/`
+const ENDPOINT = 'https://www.davidcodedesign.com'
 
 
 export default function Home() {
@@ -12,9 +12,6 @@ export default function Home() {
   useEffect(() => {
     const socket = io(ENDPOINT, {
       withCredentials: true,
-      extraHeaders: {
-        "my-custom-header": "my-custom-header"
-      }
     });
     socket.on("data", data => {
       setResponse(data);
