@@ -11,7 +11,7 @@ export default function Home() {
   const [response, setResponse] = useState([]);
   useEffect(() => {
     const socket = io(ENDPOINT, {
-      // transports: ['websocket'],
+      transports: ['websocket'],
       withCredentials: true,
     });
     socket.on("data", data => {
