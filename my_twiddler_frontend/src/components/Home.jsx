@@ -4,7 +4,7 @@ import TweetCard from './TweetCard';
 import '../css/layout.scss';
 
 // end point for socket io
-const ENDPOINT = 'localhost:8080'
+const ENDPOINT = 'https://www.davidcodedesign.com'
 
 
 export default function Home() {
