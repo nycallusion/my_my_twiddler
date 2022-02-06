@@ -3,8 +3,9 @@ import {io}  from "socket.io-client";
 import TweetCard from './TweetCard';
 import '../css/layout.scss';
 
-// const ENDPOINT = `${window.location.hostname}:8080`
-const ENDPOINT = 'https://www.davidcodedesign.com/';
+// end point for socket io
+const ENDPOINT = `${window.location.hostname}/`
+
 
 export default function Home() {
   const [response, setResponse] = useState([]);
