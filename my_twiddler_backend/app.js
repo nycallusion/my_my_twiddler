@@ -32,7 +32,6 @@ app.use(cors({
     // "http://localhost:3000",
   ],
   methods: ["GET", "POST"],
-  allowedHeaders: ["my-custom-header"],
   credentials: true,
 }));
 app.use(logger("dev"));
