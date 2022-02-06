@@ -27,8 +27,7 @@ mongoose
 app.use(fileUpload());
 app.use(cors({
   origin: [
-    "https://www.davidcodedesign.com:3000",
-    "https://davidcodedesign.com:3000",
+    "https://www.davidcodedesign.com",
     // "http://localhost:3000",
   ],
   methods: ["GET", "POST"],
