@@ -22,8 +22,19 @@ mongoose
     console.log("server err");
   });
 
+
+
 app.use(fileUpload());
-app.use(cors());
+app.use(cors({
+  origin: [
+    "https://www.davidcodedesign.com:3000",
+    "https://davidcodedesign.com:3000",
+    // "http://localhost:3000",
+  ],
+  methods: ["GET", "POST"],
+  allowedHeaders: ["my-custom-header"],
+  credentials: true,
+}));
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -31,18 +42,7 @@ app.use("/api/users", usersRouter);
 app.use("/api/tweet", tweetRouter);
 
 const server = http.createServer(app);
-const io = socketIo(server, {
-  cors: {
-    origin: [
-      "https://www.davidcodedesign.com:3000",
-      
-      // "http://localhost:3000",
-    ],
-    methods: ["GET", "POST"],
-    allowedHeaders: ["my-custom-header"],
-    credentials: true,
-  },
-});
+const io = socketIo(server);
 
 io.on("connection", (socket) => {
   let tweet = [];
