@@ -23,21 +23,7 @@ mongoose
   });
 
 app.use(fileUpload());
-app.use(
-  cors({
-    origin: [
-      "https://www.davidcodedesign.com:3000",
-      "https://davidcodedesign.com:3000",
-      "https://www.davidcodedesign.com:",
-      "https://davidcodedesign.com:",
-      
-      // "http://localhost:3000",
-    ],
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept'],
-  })
-);
+app.use(cors());
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -49,7 +35,7 @@ const io = socketIo(server, {
   cors: {
     origin: [
       "https://www.davidcodedesign.com:3000",
-      "https://davidcodedesign.com:3000",
+      
       // "http://localhost:3000",
     ],
     methods: ["GET", "POST"],
