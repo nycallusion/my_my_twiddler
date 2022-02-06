@@ -36,7 +36,7 @@ const io = socketIo(server, {
         origin: [
           "https://www.davidcodedesign.com:3000",
           "https://davidcodedesign.com:3000",
-          
+          "http://localhost:3000",
         ],
         methods: [
             "GET", "POST"
