@@ -1,4 +1,4 @@
 /my_twiddler_backend/.env
-my_twiddler_frontend/.env
-/my_twiddler_backend/echo .DS_Store >> ~/.gitignore_global
+/my_twiddler_frontend/.env
+/my_twiddler_backend/node_modules
 /my_twiddler_frontend/node_modules
