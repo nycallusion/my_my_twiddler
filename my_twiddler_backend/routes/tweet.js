@@ -15,7 +15,8 @@ router.post('/create',authenticateToken, async (req, res, next) => {
       let newTweet = await new Tweet({
         owner: user._id,
         userName : user.userName,
-        message
+        message,
+        profilePic :user.profilePic
       });
       await newTweet.save();
 

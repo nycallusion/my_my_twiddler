@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Header from './header/Header';
 import LeftBar from './bars/LeftBar';
 import '../css/layout.scss';

@@ -23,15 +23,7 @@ export const userSlice = createSlice({
     updateUser: (state,  { payload }) => {
       state.profilePic = payload.profilePic
     },
-  },
-//   extraReducers: {
-//     [fetchFavorites.fulfilled]: (state, action) => {
-//       state.favoriteDetails = action.payload;
-//     },
-//     [toggleFavorites.fulfilled]: (state, action) => {
-//       state.favorites = action.payload;
-//     },
-//   },
+  }
 });
 
 export const { setToken, logout ,updateUser} = userSlice.actions;

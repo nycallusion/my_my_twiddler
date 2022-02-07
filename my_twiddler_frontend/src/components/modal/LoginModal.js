@@ -35,7 +35,7 @@ export default function LoginModal({openLogin, closeLoginHandler}) {
                 setErrMsg(data.message);
             } else {
                 // set token and auto login
-                dispatch(setToken({token: data.token, user_id: data.user}));
+                dispatch(setToken({token: data.token, user_id: data.user, profilePic: data.profilePic}));
             }
         })
     }

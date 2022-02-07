@@ -1,33 +1,23 @@
-import { React, useState,useEffect,useRef  } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { React, useState,useEffect} from 'react';
 import {io}  from "socket.io-client";
 import TweetCard from './TweetCard';
 import '../css/layout.scss';
 
-const ENDPOINT = "http://localhost:4001/";
-
+// end point for socket io
+const ENDPOINT = 'https://www.davidcodedesign.com'
 
 
 export default function Home() {
   const [response, setResponse] = useState([]);
-
   useEffect(() => {
     const socket = io(ENDPOINT, {
+      transports: ['websocket'],
       withCredentials: true,
-      extraHeaders: {
-        "my-custom-header": "abcd"
-      }
     });
     socket.on("data", data => {
-      if (response.length < 30){
-        setResponse(data);
-       
-      }
-      else if (data[data.length -1].timestamp !== response[response.length -1].timestamp){
-        setResponse(data);
-      }
-    });
-  }, []);
+      setResponse(data);
+    }); 
+  },[]);
 
 
   return (

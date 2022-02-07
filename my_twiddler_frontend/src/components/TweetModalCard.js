@@ -1,4 +1,4 @@
-import React,{useState}from 'react';
+import React from 'react';
 import '../css/layout.scss';
 import ReactTimeAgo from 'react-time-ago';
 
@@ -6,7 +6,7 @@ import ReactTimeAgo from 'react-time-ago';
 
 
 export default function TweetModalCard({item}) {
-  const {userName,message,timestamp} = item;
+  const {message,timestamp} = item;
   return (
       <div className='tweet-modal-card' >
           <div className='tweet-modal-info'>
